@@ -148,7 +148,7 @@ Pipeline Architecture
 ![Pipeline Architecture](data/assets/pipeline_diagram.png)
 
 Power BI Dashboard Preview
-![Power BI Dashboard](data/assets/dashboard_preview.png)
+![Dashboard Preview](data/assets/dashboard_preview.png)
 
 
 Contact
