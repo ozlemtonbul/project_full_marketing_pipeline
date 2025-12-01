@@ -143,6 +143,41 @@ Project uses simulated / sample datasets
 
 Designed for portfolio demonstration
 
+---
+
+##  Pipeline Architecture (Optional)
+Below is the architecture of the full Marketing ETL pipeline, including Ads + GA4 + KPIs:
+
+![Pipeline Architecture](data/assets/pipeline_diagram.png)
+
+---
+
+## Power BI Dashboard Preview (Optional)
+A preview of the final Marketing Performance Dashboard:
+
+![Power BI Dashboard](data/assets/dashboard_preview.png)
+
+---
+
+## How to Run the Project
+
+### 1. Install required libraries
+```bash
+pip install -r requirements.txt
+
+Set your environment variables
+GA4_API_KEY=your_ga4_key
+ADS_CLIENT_ID=your_client_id
+ADS_CLIENT_SECRET=your_secret
+
+ Run the full pipeline
+python data/scripts/main_etl.py
+
+
+ Open Power BI dashboard
+data/processed/marketing_ga4_merged_with_kpis.csv
+
+
 7. Contact
 
 Özlem Tonbul
