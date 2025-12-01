@@ -144,11 +144,14 @@ Predicted ROAS (ML Model)
 
 LP Budget Optimization Results
 
-Pipeline Architecture
-![Pipeline Architecture](data/assets/pipeline_diagram.png)
+Marketing ETL Pipeline Diagram
 
-Power BI Dashboard Preview
-![Dashboard Preview](data/assets/dashboard_preview.png)
+![Marketing ETL Pipeline](data/assets/marketing_etl_pipeline.png.png)
+
+
+ETL Pipeline Architecture
+
+![ETL Pipeline Architecture](data/assets/etl_pipeline_architecture.png.png)
 
 
 Contact
