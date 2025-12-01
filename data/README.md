@@ -1,205 +1,149 @@
-Full Marketing ETL Pipeline
-Google Ads API | GA4 API | Python | Power BI
+# Full Marketing ETL Pipeline — Google Ads, GA4, Python & Power BI
 
-This project is an end-to-end Marketing Analytics Pipeline built using Python, Google Ads API, GA4 Data API, Pandas, and Power BI.
-It automates data extraction, transformation, KPI generation, and dashboard reporting — providing a unified marketing analytics workflow.
+This project is a full end-to-end **Marketing Analytics ETL Pipeline**.
 
-This simulation uses sample Kaggle datasets but follows a real enterprise pipeline architecture.
+It uses:
 
- Project Overview
+- **Python** (Pandas, NumPy, Scikit-learn, XGBoost, PuLP)
+- **Google Ads** (simulated via Kaggle marketing dataset)
+- **Google Analytics 4 (GA4)** sample ecommerce events
+- **Power BI** for dashboards
+
+The goal is to demonstrate how a modern marketing team can:
+
+1. Collect data from Ads + Analytics sources  
+2. Clean and unify the data  
+3. Calculate core marketing KPIs  
+4. Train ML models (ROAS & CPA prediction)  
+5. Optimize marketing budget using Linear Programming  
+6. Export datasets for Power BI  
+
+---
+
+## 1. Project Overview
 
 This pipeline automatically:
 
-Connects to Google Ads API
+- Loads **Ads / marketing data** (`Brand_Sales_AdSpend_Data.csv`)
+- Loads **GA4 raw event data** (`ga4_obfuscated_sample_ecommerce.csv`)
+- Aggregates GA4 events → Sessions, Transactions, Revenue
+- Merges Ads + GA4 on **Date + Country**
+- Cleans numeric fields & handles missing values
+- Calculates KPIs:
+  - Profit  
+  - ROAS  
+  - CPA  
+  - CTR  
+  - CPC  
+  - Conversion Rate  
+- Trains machine learning models:
+  - ROAS → RandomForest, Linear Regression, optional XGBoost
+  - CPA → RandomForest
+- Runs simple **what-if budget simulations**
+- Builds **Linear Programming (PuLP)** budget optimizer
+- Saves final datasets ready for BI dashboards
 
-Connects to Google Analytics 4 (GA4) API
+---
 
-Extracts raw marketing data daily (cron job / automation ready)
+## 2. Repository Structure
 
-Cleans and transforms marketing + analytics data
-
-Generates marketing KPIs:
-
-ROAS
-
-CPA
-
-CTR
-
-CPC
-
-Conversion Rate
-
-Revenue
-
-Sessions
-
-Bounce Rate
-
-Saves cleaned datasets into structured folders
-
-Pushes final outputs to Power BI
-
-Builds automated dashboards for business stakeholders
-
- Repository Structure
 project_full_marketing_pipeline/
 │
-├── assets/                # Visuals, architecture diagrams, etc.
-│
-├── notebooks/             # Jupyter notebooks for development
-│
-├── powerbi/               # Power BI (.pbix) dashboard files
-│
-├── reports/               # Auto-generated reports (weekly/monthly)
-│
-├── scripts/               # Python ETL scripts
-│   ├── ads_etl.py
-│   ├── ga4_etl.py
-│   ├── merge_etl.py
-│   ├── kpi_engine.py
-│   └── scheduler_cron.sh (optional for automation)
-│
 ├── data/
-│   ├── raw/               # Raw API responses
-│   ├── interim/           # Intermediate cleaned data
-│   └── processed/         # Final datasets for BI
+│ ├── assets/ # Images, diagrams (optional)
+│ ├── notebooks/ # Jupyter/Colab notebooks
+│ ├── powerbi/ # Power BI (.pbix) dashboard files
+│ ├── reports/ # Exported reports
+│ ├── scripts/ # Python ETL scripts
+│ │ ├── ads_etl.py
+│ │ ├── ga4_etl.py
+│ │ ├── merge_etl.py
+│ │ ├── kpi_engine.py
+│ │ └── main_etl.py # Runs the full pipeline
+│ │
+│ ├── raw/ # Input CSV files (Ads + GA4)
+│ │ ├── Brand_Sales_AdSpend_Data.csv
+│ │ └── ga4_obfuscated_sample_ecommerce.csv
+│ │
+│ ├── interim/ # Intermediate datasets
+│ └── processed/ # Final cleaned + enriched datasets
+│ ├── marketing_ga4_merged_with_kpis.csv
+│ ├── product_country_performance.csv
+│ ├── what_if_budget_simulation.csv
+│ └── lp_budget_recommendations.csv
 │
-└── README.md              # Project documentation
+└── README.md # Documentation
 
-Technologies Used
+---
 
-Python 3.10+
+## 3. Script Breakdown
 
-Google Ads API
+### **ads_etl.py**
+- Loads the Ads/Marketing CSV  
+- Cleans column names  
+- Ensures numeric formatting  
 
-Google Analytics 4 Data API (GA4 Data API)
+### **ga4_etl.py**
+- Loads GA4 raw events  
+- Converts timestamps  
+- Builds Sessions, Transactions, Revenue (country-level)  
 
-Pandas, NumPy, Requests
+### **merge_etl.py**
+- Joins Ads + GA4  
+- Handles NaNs  
+- Removes duplicates  
 
-Power BI Desktop
+### **kpi_engine.py**
+- Calculates KPIs  
+- Builds ML models  
+- Runs what-if simulations  
+- Runs Linear Programming optimizer  
 
-Cron / Task Scheduler for automation
+### **main_etl.py**
+- Full pipeline runner  
+- Calls all ETL steps in correct order  
+- Saves all output CSVs under `/processed/`  
 
-Kaggle sample datasets (simulation)
+---
 
- Pipeline Architecture (High-Level)
-1. Data Extraction
+## 4. How to Run
 
-Fetch data from Google Ads API
+### Install required packages:
+```bash
+pip install pandas numpy scikit-learn xgboost pulp
 
-Fetch data from GA4 API
+Run the full ETL pipeline:
+cd data/scripts
+python main_etl.py
 
-Save results into /data/raw/
+Output files are saved here:
+data/processed/
+   marketing_ga4_merged_with_kpis.csv
+   product_country_performance.csv
+   what_if_budget_simulation.csv
+   lp_budget_recommendations.csv
 
-2. Data Cleaning & Transformation
+5. Power BI
+data/processed/marketing_ga4_merged_with_kpis.csv
+Recommended visuals:
 
-Convert schemas
+ROAS vs Spend
 
-Normalize column names
+CPA by Country / Brand
 
-Merge Ads + GA4 datasets
+Revenue vs Sessions
 
-Save to /data/interim/
+Linear Programming budget recommendations
 
-3. KPI Engine
+6. Notes
 
-Calculate:
+XGBoost & PuLP optional—pipeline still works without them
 
-ROAS
+Project uses simulated / sample datasets
 
-CPC
+Designed for portfolio demonstration
 
-CPA
-
-CTR
-
-Conversion Rate
-
-Revenue per Session
-
-Save to /data/processed/
-
-4. Reporting & Dashboarding
-
-Load processed datasets into Power BI
-
-Build:
-
-Marketing Performance Dashboard
-
-Campaign-level insights
-
-Device/Country segmentation
-
-Auto-refresh supported via scheduled Python script
-
-Power BI Dashboard Features
-
-Daily marketing KPIs
-
-Spend, Clicks, Impressions
-
-Revenue & Conversion metrics
-
-Campaign-level performance
-
-GA4 behavior metrics (Sessions, Bounce Rate, etc.)
-
-Trend analysis
-
-Filters for:
-
-Country
-
-Device
-
-Campaign
-
-Date range
-
-Project Goals
-
-This project demonstrates:
-
-End-to-end data engineering workflow
-
-Python ETL development
-
-API integrations
-
-Marketing analytics expertise
-
-Clean and scalable project structure
-
-Dashboard building for decision-makers
-
-Realistic simulation of an enterprise data pipeline
-
-How to Reproduce
-
-Clone the repository
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-
-Add API credentials (Google Ads / GA4) as environment variables
-
-Run ETL scripts:
-
-python ads_etl.py
-python ga4_etl.py
-python merge_etl.py
-python kpi_engine.py
-
-
-Open Power BI → Load dataset from /data/processed/
-
-Refresh dashboard → Done 
-
-Contact
+7. Contact
 
 Özlem Tonbul
 Digital Marketing & Data Analyst
