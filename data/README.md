@@ -56,14 +56,15 @@ project_full_marketing_pipeline/
 
 # ## 2. Pipeline Flow – High Level Diagram
 
-![Marketing ETL Pipeline](data/assets/marketing_etl_pipeline.png)
+![Marketing ETL Pipeline](assets/marketing_etl_pipeline.png)
+
 
 
 ---
 
 # ## 3. ETL Pipeline Architecture (Technical)
 
-![ETL Pipeline Architecture](data/assets/etl_pipeline_architecture.png)
+![ETL Pipeline Architecture](assets/etl_pipeline_architecture.png)
 
 ---
 
