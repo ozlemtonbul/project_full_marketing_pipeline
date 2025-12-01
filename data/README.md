@@ -106,11 +106,12 @@ project_full_marketing_pipeline/
 
 ---
 
-## 4. How to Run
+## How to Run the Project
 
-### Install required packages:
+### 1. Install required libraries
 ```bash
 pip install pandas numpy scikit-learn xgboost pulp
+
 
 Run the full ETL pipeline:
 cd data/scripts
@@ -170,8 +171,10 @@ GA4_API_KEY=your_ga4_key
 ADS_CLIENT_ID=your_client_id
 ADS_CLIENT_SECRET=your_secret
 
+
  Run the full pipeline
-python data/scripts/main_etl.py
+cd data/scripts
+python main_etl.py
 
 
  Open Power BI dashboard
