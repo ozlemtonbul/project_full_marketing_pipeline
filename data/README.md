@@ -68,12 +68,12 @@ project_full_marketing_pipeline/
 
 # ## 4. Features Included
 
-### ✔ Data Cleaning & Normalization
+### Data Cleaning & Normalization
 - Handles missing values  
 - Standardizes naming conventions  
 - Merges Ads + GA4 datasets  
 
-### ✔ KPI Engine
+### KPI Engine
 Automatically calculates:
 - ROAS
 - ROI
@@ -83,17 +83,17 @@ Automatically calculates:
 - Profit
 - Country & Product level performance
 
-### ✔ Machine Learning Models
+###  Machine Learning Models
 - Predict future ROAS  
 - Predict CPA  
 - Scikit-learn + XGBoost  
 
-### ✔ Budget Optimization
+###  Budget Optimization
 Linear Programming model using **PuLP**:
 - Allocates budget across channels  
 - Maximizes revenue or conversions  
 
-### ✔ Final Output
+### Final Output
 Delivered as **Power BI dashboard** (.pbix)
 
 ---
